@@ -11,6 +11,8 @@ def data_adjustment():
     # Reading data --------------------------------------------------------------------------------------------------------------------------------
     dfPenguins = pd.read_csv('palmerpenguins.csv', delimiter=',')
 
+    print(dfPenguins.head())
+
     # Mapping for data replacement ----------------------------------------------------------------------------------------------------------------
     island_dict = {"Biscoe": 0, "Dream": 1, "Torgersen": 2}
     sex_dict = {"FEMALE": 0, "MALE": 1}
@@ -21,8 +23,12 @@ def data_adjustment():
     dfPenguins['species'] = dfPenguins['species'].replace(species_dict).astype(int)
     dfPenguins['sex'] = dfPenguins['sex'].replace(sex_dict).astype(int)
 
+    print(dfPenguins.head())
+
     # Reordering collums --------------------------------------------------------------------------------------------------------------------------
     dfPenguins = dfPenguins.reindex(columns=['island', 'sex', 'culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g', 'species'])
+
+    print(dfPenguins.head())
 
     return dfPenguins
 
@@ -95,6 +101,3 @@ if __name__ == "__main__":
             print("\nPenguin ", i+1)
             print("KNN Prediction: ", species_dict[penguin_predict_KNN[i]])
             print("Decision Tree Prediction: ", species_dict[penguin_predict_DT[i]])
-
-
-
